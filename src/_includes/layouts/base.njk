@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Zambezi Ultima</title>
+    <!-- All your head content (CSS, fonts, etc.) -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3DB200',secondary:''},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        /* All your CSS styles */
+    </style>
+</head>
+<body class="bg-white">
+    {% include "partials/header.njk" %}
+    
+    <main>
+        {{ content | safe }}
+    </main>
+    
+    {% include "partials/contact-strip.njk" %}
+    {% include "partials/footer.njk" %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sticky header script
+        });
+    </script>
+</body>
+</html>
