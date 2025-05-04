@@ -16,10 +16,13 @@ jobs:
           node-version: 20
 
       - run: npm install
-      - run: npx @11ty/eleventy
+      - run: npm run build  # This should run your build script
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+          # Add these two lines:
+          keep_files: true  # Preserve .nojekyll and CNAME
+          destination_dir: ./  # Deploy to root of gh-pages branch
