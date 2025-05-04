@@ -4,11 +4,19 @@ on:
   push:
     branches: [main]
 
+# Add these permissions
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important for peaceiris/actions-gh-pages
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -16,13 +24,14 @@ jobs:
           node-version: 20
 
       - run: npm install
-      - run: npm run build  # This should run your build script
+      - run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          # Add these two lines:
-          keep_files: true  # Preserve .nojekyll and CNAME
-          destination_dir: ./  # Deploy to root of gh-pages branch
+          keep_files: true
+          # Enable this if you want to deploy to a subfolder
+          # destination_dir: ./ 
+          full_commit_message: "Deploy Eleventy site from commit ${{ github.sha }}"
